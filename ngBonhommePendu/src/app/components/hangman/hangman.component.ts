@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-hangman',
@@ -31,12 +32,20 @@ export class HangmanComponent {
     this.index = nbTries;
   }
 
-  showMore() {
+  async showMore() {
     if(!this.parts)
       return;
 
     // Affiche un élément de plus
     this.parts.item(this.index)?.classList.add("fadeIn");
     this.index++;
+    if(this.index == 6){
+      setTimeout(() => {
+        if(!this.parts)
+          return;
+        this.parts.item(this.index)?.classList.add("fadeIn");
+      }, 2000);
+
+    }
   }
 }

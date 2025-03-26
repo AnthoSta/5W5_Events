@@ -9,6 +9,9 @@ namespace BonhommePendu.Events
 
         // TODO: Compléter
         public WinEvent(GameData gameData) {
+            gameData.Won = true;
+            
+               
         }
     }
 }

@@ -30,7 +30,7 @@ export class AppComponent {
 
   connectToHub() {
     this.hubConnection = new signalR.HubConnectionBuilder()
-                              .withUrl('http://localhost:5030/Pendu')
+                              .withUrl('https://localhost:7170/Pendu')
                               .build();
 
       this.hubConnection!.on('GameData', (data:GameData) => {
@@ -84,6 +84,15 @@ export class AppComponent {
         }
         case "GuessedLetter": {
           this.gameData.guessedLetters.push(event.letter);
+          break;
+        }
+        case "Win": {
+          this.gameData.won = true;
+          break;
+        }
+        case "Lose": {
+          this.gameData.lost = true;
+          this.wronglyGuessedWord = event.word
           break;
         }
       }
